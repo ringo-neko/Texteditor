@@ -4,8 +4,12 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <textarea id="t"></textarea>
+    <p>ファイル名</p>
+    <textarea id="t" style="width: 98vw; height: 80vh;"></textarea>
+    <p>ファイルの中身</p>
+    <textarea id="t" style="width: 98vw; height: 80vh;"></textarea>
     <input type="file" id="f">
+    <button onclick="downloadAsFile(document.getElementById('t'), document.getElementById('fn'))"></button>
     <script>
 const fileinput = document.getElementById('f');
 fileinput.addEventListener('change', (event) => {
@@ -17,6 +21,18 @@ fileinput.addEventListener('change', (event) => {
   };
   reader.readAsText(file); // ファイルをテキストとして読み込む
 });
+// https://zenn.dev/snake12379/articles/8c4491dc13caa3
+function downloadAsFile(text, filename) {
+  const blob = new Blob([text], { type: "text/plain"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
     </script>
   </body>
 </html>
