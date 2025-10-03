@@ -9,7 +9,8 @@
     <p>ファイルの中身</p>
     <textarea id="t" style="width: 98vw; height: 30vh;"></textarea>
     <input type="file" id="f">
-    <button onclick="downloadAsFile(document.getElementById('t').value, document.getElementById('fn').value)"></button>
+    <br>
+    <button onclick="downloadAsFile(document.getElementById('t').value, document.getElementById('fn').value)">ダウンロード</button>
     <script>
 const fileinput = document.getElementById('f');
 fileinput.addEventListener('change', (event) => {
